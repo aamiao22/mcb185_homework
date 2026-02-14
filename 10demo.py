@@ -1,3 +1,15 @@
+import math
+
+print('hello, again')
+print(1.5e-2)
+print(1 + 1)
+print(2**3)
+print(pow(2, 3))
+print(math.pow(2, 3))
+print(2**0.5)
+print(math.sqrt(2))
+print(math.log(2))
+
 #print('a', 'ace', 'hello', 5, 3.1415926, 2.8, sep='\t')
 
 def is_prime(n):
