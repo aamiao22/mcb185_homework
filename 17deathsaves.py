@@ -5,7 +5,7 @@ def one_game():
 	successes = 0
 	failures = 0
 	while successes < 3 and failures < 3:
-		r = random.randint(1, 21)
+		r = random.randint(1, 20)
 	
 	if r == 20:
 		return 'revive'
