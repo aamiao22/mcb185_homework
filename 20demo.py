@@ -234,7 +234,7 @@ nts = 'ACGT'
 #		distance += abs(target_b - int(b))
 #		print(colorname, distance)
 		
-#		if distance < min_distance
+#		if distance < min_distance:
 #			discrepancy = abs(distance - min_distance)
 #			min_distance = distance
 #			min_color = colorname
@@ -283,6 +283,285 @@ nts = 'ACGT'
 #	if d > 1: outside += 1
 #	else:		inside += 1
 #	print(4 * inside / (inside + outside), total)
+
+
+#import sys
+#import itertools
+
+#def translate(orf):  #36
+#	codons = [''.join(t) for t in itertools.product('ACGT', repeat=3)]
+#	trans = 'KNKNTTTTRSRSIIMIQHQHPPPPRRRRLLLLEDEDAAAAGGGGVVVV*Y*YSSSS*CWCLFLF'
+#	prot = '' #prot = []
+#	for i in range(0, len(orf), 3):
+#		codon = orf[i:i+3]
+#		idx = codons.index(codon)
+#		aa = trans[idx]
+#		prot += aa #prot.append(aa)
+#		
+#	return prot
+#	
+#protein = translate('ATAGCGAAT')
+#print(protein)
+
+#import random
+#import sys
+
+#def random_subseq(seq, n, k):
+#	subs = []
+#	for _ in range(n):
+#		x = random.randint(0, len(seq) -k)
+#		subseq = seq[x:x+k]
+#		subs.append(subseq)
+#	return subs
+
+#seq = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' # 10 + 26 = 36
+#subseqs = random_subseq(seq, 15, 7)
+#print(subseqs)
+
+#new
+#import random
+#import sys
+
+#def anti(subseq):
+#	rev = seq[::-1]
+#	rc = ''
+#	for nt in rev:
+#		if nt == 'A': rc += 'T'
+#		elif nt == 'C': rc += 'G'
+#		elif nt == 'G': rc += 'C'
+#		elif nt == 'T': rc += 'A'
+#	return rc
+
+#def shotgun_simu(seq, n, k):
+#	subs = []
+#	for _ in range(n):
+#		x = random.randint(0, len(seq) -k)
+#		subseq = seq[x:x+k]
+#		if random.random() < 0.5: subseq = anti(subseq)
+#		subs.append(subseq)
+	
+#	return subs
+
+#seq = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+#subseqs = shotgun_simu(seq, 15, 7)
+#print(subseqs)
+
+## 40 mutated dna:
+#import random
+#import sys
+
+#def mutate(s, p):
+#	seq = list(s)
+#	for i in range(len(seq)):
+#		if random.random() < p:
+#			if seq[i] == 'A': seq[i] = random.choice('CGT')
+#			elif seq[i] == 'C': seq[i] = random.choice('AGT')
+#			elif seq[i] == 'G': seq[i] = random.choice('ACT')
+#			elif seq[i] == 'T': seq[i] = random.choice('AGC')
+#	return ''.join(seq)
+
+#dna = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+#dna = mutate(dna, 0.2)
+#print(dna)
+
+
+#import random
+
+#def random_dna(n):
+#	seq = ''
+#	for _ in range(n):
+#		seq += random.choice('ACGT')
+#	return seq
+
+#for i in range(5):
+#	print(i, random_dna(10))
+
+
+##
+#import random
+##import math
+#def random_dna(n, X=[0.25, 0.25, 0.25, 0.25]):
+	##if not math.isclose(1.0, sum(X)): sys.exit('oops')
+#	a = X[0]
+#	c = X[0] + X[1]
+#	g = X[0] + X[1] + X[2]
+#	rseq = ''
+	
+#	for _ in range(n):
+#		r = random.random()
+#		if r < a: rseq += 'A'
+#		elif r < c: rseq += 'C'
+#		elif r < g: rseq += 'G'
+#		else:		rseq += 'T'
+#	return rseq
+
+#for i in range(5):
+#	print(i, random_dna(10, X=[0.7, 0.1, 0.1, 0.1]))
+
+
+##weights:
+#import random
+
+#def random_dna(n, X=[0.25, 0.25, 0.25, 0.25]):
+#	total = sum(X)
+#	a = X[0]/total
+#	c = (X[0] + X[1]) / total 
+#	g = (X[0] + X[1] + X[2]) / total
+#	rseq = ''
+	
+#	for _ in range(n):
+#		r = random.random()
+#		if r < a: rseq += 'A'
+#		elif r < c: rseq += 'C'
+#		elif r < g: rseq += 'G'
+#		else:		rseq += 'T'
+#	return rseq
+
+#for i in range(5):
+#	print(i, random_dna(10, X=[0.7, 0.1, 0.1, 0.1]))
+
+##25scoringmatrix:
+
+#import sys
+
+#alph = sys.argv[1]
+#mat = sys.argv[2]
+#mis = sys.argv[3]
+
+##print the header
+#print('  ', end='')
+#for _ in range(len(alph)):
+#	print(alph[i], end=' ')
+#print()
+
+##print the side
+#for i in range(len(alph)):
+#	print(alph[i], end=' ') # print the rest
+#	for j in range(len(alph)):
+#		if i == j: print(mat, end='')
+#		else:		print(mis, end='')
+#	print('\n')
+
+##same example:
+#import sys
+
+#alph = sys.argv[1]
+#mat = sys.argv[2]
+#mis = sys.argv[3]
+
+##print the header
+#print('  ', end='')
+#for c in alph: print(c, end='  ')
+#print()
+
+##print the side
+#for i in range(len(alph)):
+#	print(alph[i], end=' ')
+#	for j in range(len(alph)):
+#		if i == j: print(mat, end=' ')
+#		else:		print(mis, end=' ')
+#	print()
+
+#def minimum(vals):
+#       mini = x[0]
+#       for val in vals[1:]:
+#           if val < mini: mini = val
+#       return mini
+
+#x = [3.14, 2.719, 1/7, 0, -2, 1]
+#print(minimum(x))
+
+#seq = input('Enter your sequence:')
+#c = seq.count('C')
+#g = seq.count('G')
+#print(c, g, len(seq), (c+g) / len(seq))
+
+#def crazy(s):
+#	up = True
+#	cl = []
+#	for c in s:
+#		if up: cl.append(c.upper())
+#		else:	cl.append(c.lower())
+#		up = not up
+#	return ''.join(cl)
+#
+#filename = sys.argv[1]
+#with open(filename) as fp:
+#	for line in fp:
+#		crazyline = crazy(line)
+#		print(crazyline)
+
+
+#def anti(dna):
+#	rev = dna[::~1]
+#	comp = ''
+#	for nt in rev:
+#		if nt == 'A': comp.append('T')
+#		elif nt == 'C': comp.append('G')
+#		elif nt == 'G': comp.append('C')
+#		elif nt == 'T': comp.append('A')
+#
+#
+#
+#
+#def longest_str(strings):
+#	longest = s[0]
+#	for s in strings[1:]:
+#		if len(s) > len(longest):
+#			longest = s 
+#	return longest, len(longest)
+#
+#string = ['hello world', 'pi', '3.14159', 'mouserat']
+#print(longest_str(strings))
+#
+#
+#def highest_tm(oligns):
+#	tm_max = tm(seqs[0])
+#	save_seq = seqs[0]
+#	
+#	for seq inn seqs[1:]:
+#		mytm = tm(seq)
+#		if mytm > tm_max:
+#			tm_max = mytm
+#			save_seq = seq
+#
+#	return tm_max, save_seq
+#
+#oligos = ['ACGATTATT', 'CAATATCGATA', 'AAAAAAAAAAAAAAAA', 'ACG']
+#print
+
+#def minnmax(vals):
+#	a = vals[0]
+#	b = vals[0]
+#	for val in vals[1:]:
+#		if val < a: a = val
+#		if val > b: b = val
+#	return a,b
+
+#def mymin(vals):
+#	minval = vals[0]
+#	for val in vals:
+#		if val < minval: minval = val
+#	return minval
+
+#def minnmax2(vals):
+#	myvals = vals.copy()
+#	myvals.sort()
+#	return myvals[0], myvals[-1]
+#
+#stuff = [3, -1, 0, 5, 21, 8]
+#print(minmax(stuff))
+
+
+#nucleotides = nts
+#nucleotides.append('C')
+#nucleotides.sort()
+#print(nts, nucleotides)
+
+
+
+
+
 
 
 
